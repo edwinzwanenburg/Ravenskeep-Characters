@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+	<title>Character sheet</title>
+	<link href="sheet.css" rel="stylesheet" type="text/css">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+</head>
+<body>
+	<div class="charactersheet">
+		<div class="area">
+			<div class="section player">
+				<h2 class="title before">Speler</h2>
+				<div id="speler" class="field name">Edwin Zwanenburg</div>
+			</div>
+			<div class="section character">
+				<h2>Karakter</h2>
+				<div class="title before">Roepnaam</div>
+				<div id="character-naam" class="field name">Theodoor van de Boomgaard</div>
+				
+				<div class="sets">
+					<div class="set">
+						<div class="title">Ras</div>
+						<div id="ras" class="field">Mens</div>
+					</div>
+					<div class="set">
+						<div class="title">Rasvoordeel</div>
+						<div id="rasvoordeel" class="field">Geen</div>
+					</div>
+					<div class="set">
+						<div class="title">Godsdienst</div>
+						<div id="godsdienst" class="field">Nana</div>
+					</div>
+					<div class="set">
+						<div class="title">Subgod</div>
+						<div id="subgod" class="field"></div>
+					</div>
+				</div>
+				
+				<h2>Experience</h2>
+				<div class="sets experience">
+					<div class="set">
+						<div class="title">Eerste live</div>
+						<div id="eerste-live" class="field">21</div>
+					</div>
+					<div class="set">
+						<div class="title">Live #</div>
+						<div id="live-nr" class="field">12</div>
+					</div>
+					<div class="set">
+						<div class="title">Totaal</div>
+						<div id="xp-totaal" class="field">28</div>
+					</div>
+				</div>
+				<div class="sets experience">
+					<div class="set">
+						<div class="title">Besteed</div>
+						<div id="xp-besteed" class="field">26</div>
+					</div>
+					<div class="set">
+						<div class="title">Restant</div>
+						<div id="xp-restant" class="field">2</div>
+					</div>
+					<div class="set">
+						<div class="title">Leermeester punten</div>
+						<div id="xp-leermeester" class="field"></div>
+					</div>
+				</div>
+				
+				<div class="set size">
+					<h3>Size</h3>
+					<img src="size.png" height="100px" />
+					<div id="gnome" class="category"></div>
+					<div id="halfling" class="category"></div>
+					<div id="dwarf" class="category"></div>
+					<div id="human" class="category">X</div>
+					<div id="demon" class="category"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="section hitpoints">
+					<h2>Punten per locatie</h2>
+					<img src="body.png" height="150px" />
+					<div id="hp-helm" class="field">0</div>
+					<div id="hp-torso" class="field">4</div>
+					<div id="hp-linkerarm" class="field">4</div>
+					<div id="hp-rechterarm" class="field">4</div>
+					<div id="hp-linkerbeen" class="field">4</div>
+					<div id="hp-rechterbeen" class="field">4</div>
+				</div>
+				<div class="section magic">
+					<h2>Mana</h2>
+					<div class="sets">
+						<div class="set">
+							<div class="title">Per dag</div>
+							<div id="mana" class="field">24</div>
+						</div>
+						<div class="set">
+							<div class="title">Eerste live met mana</div>
+							<div id="eerste-live-mana" class="field"></div>
+						</div>
+					</div>
+							
+					<h2>Leermeester</h2>
+					<div id="leermeester" class="field"></div>
+					
+					<div class="sets">
+						<div class="title level">Level</div>
+						<div class="set">
+							<div class="title">Magie</div>
+							<div id="lvlmagie" class="field"></div>
+						</div>
+						<div class="set">
+							<div class="title">Religie</div>
+							<div id="lvlreligie" class="field"></div>
+						</div>
+						<div class="set">
+							<div class="title">Ambacht</div>
+							<div id="lvlambacht" class="field"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="area">
+			<div class="column">
+				<div class="section possessions">
+					<table class="possessions">
+						<caption>Bezittingen:</caption>
+						<tr>
+							<th class="naam">Naam</th>
+						</tr>
+						<tr>
+							<td>Focus</td>
+						</tr>
+						<tr>
+							<td>Appels</td>
+						</tr>
+					</table>
+				</div>
+				<div class="section logo">
+					<img src="ravenskeep.png" height="125px" />
+				</div>
+			</div>
+			<div class="section skills column">
+				<table class="skills">
+					<caption>Vaardigheden:</caption>
+					<tr>
+						<th class="naam">Naam</th>
+						<th class="xp">xp</th>
+					</tr>
+					<tr>
+						<td>Broeder</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>Dolk</td>
+						<td>0</td>
+					</tr>
+				<table>
+				
+				<table class="spells">
+					<caption>Spreuken:</caption>
+					<tr>
+						<th class="naam">Naam</th>
+						<th class="xp">xp</th>
+						<th class="mana">mana</th>
+					</tr>
+					<tr>
+						<td>Sanctuary</td>
+						<td>1</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>Heal Location</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="area">
+			<div class="section xfactor">
+				<h2>X-Factor</h2>
+				<div id="xfactor">X-factor eigenschappen hier!</div>
+			</div>
+		</div>
+		<div class="area">
+			<div class="section remarks">
+				<h2>Opmerkingen</h2>
+				<div id="opmerkingen">Opmerkingen hier!</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
