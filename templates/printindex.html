@@ -1,118 +1,241 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-	<title>Character sheet</title>
-	<link href="/static/css/printindex.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<title>Character sheet</title>
+	<link href="/static/css/sheet.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   {% for char in chars %}
-	<form method="get">
-		<input class="absolute" id="speler" name="speler" value="{{ char.speler.name }}">
-		<input class="absolute" id="character_naam" name="character_naam" value="{{ char.character_naam }}">
-		<input class="absolute" id="ras" name="ras" value={{ char.ras.naam }}>
-		<input class="absolute" id="rasvoordeel" name="rasvoordeel" value={{ char.ras.skill }}>
-		<input class="absolute" id="god" name="god" value={{ char.god.naam }}>
-		<input class="absolute" id="subgod" name="subgod" value={% if char.subgod %}{{ char.subgod.naam }}{% endif %}>
-		<input class="absolute" id="eerste_live" name="eerste_live" value={{ char.eerste_live }}>
-		<input class="absolute" id="live_nr" name="live_nr" value={{ char.live_nr }}>
-		<input class="absolute" id="xp_total" name="xp_total" value={{ char.xp_total }}>
-		<input class="absolute" id="xp_spent" name="xp_spent" value={{ char.xp_spent }}>
-		<input class="absolute" id="xp_remaining" name="xp_remaining" value={{ char.xp_remaining }}>
-		<input class="absolute" id="leermeesterpunten" name="leermeesterpunten">
-		<input class="absolute" id="zeer-klein" type="radio" name="grootte" value="zeer-klein">
-		<input class="absolute" id="klein" type="radio" name="grootte" value="klein">
-		<input class="absolute" id="middel" type="radio" name="grootte" value="middel">
-		<input class="absolute" id="groot" type="radio" name="grootte" value="groot">
-		<input class="absolute" id="zeer-groot" type="radio" name="grootte" value="zeer-groot">
-		<input class="absolute" id="hp_helm" name="hp_helm" value={{ char.hitpoints }}>
-		<input class="absolute" id="hp_linkerarm" name="hp_linkerarm" value={{ char.hitpoints }}>
-		<input class="absolute" id="hp_rechterarm" name="hp_rechterarm" value={{ char.hitpoints }}>
-		<input class="absolute" id="hp_torso" name="hp_torso" value={{ char.hitpoints }}>
-		<input class="absolute" id="hp_linkerbeen" name="hp_linkerbeen" value={{ char.hitpoints }}>
-		<input class="absolute" id="hp_rechterbeen" name="hp_rechterbeen" value={{ char.hitpoints }}>
-		<input class="absolute" id="mana" name="mana" value={{ char.mana }}>
-		<input class="absolute" id="eerste_mana_live" name="eerste_mana_live" value={{ char.eerste_mana_life }}>
-		<input class="absolute" id="leermeester" name="leermeester">
-		<input class="absolute" id="lvlmagie" name="lvlmagie">
-		<input class="absolute" id="lvlreligie" name="lvlreligie">
-		<input class="absolute" id="lvlambacht" name="lvlambacht">
-		<textarea class="absolute" id="xfactor" name="xfactor" value={{ char.x_factor_skill }} {{ char.ras.skill }}></textarea>
-		<textarea class="absolute" id="opmerkingen" name="opmerkingen" value={{ char.opmerkingen }}></textarea>
-	</form>
-
-	<div id="tabelrechts">
-		<table id="vsr_lijst">
-			{% if char.skills.count %}
-					<th>Vaardigheden:</th>
+	<div class="charactersheet">
+		<div class="area">
+			<div class="section player">
+				<h2 class="title before">Speler</h2>
+				<div id="speler" class="field name">{{ char.speler.name }}</div>
+			</div>
+			<div class="section character">
+				<h2>Karakter</h2>
+				<div class="title before">Roepnaam</div>
+				<div id="character-naam" class="field name">{{ char.character_naam }}</div>
+				
+				<div class="sets">
+					<div class="set">
+						<div class="title">Ras</div>
+						<div id="ras" class="field">{{ char.ras.naam }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Rasvoordeel</div>
+						<div id="rasvoordeel" class="field">{{ char.ras.skill }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Godsdienst</div>
+						<div id="godsdienst" class="field">{{ char.god.naam }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Subgod</div>
+						<div id="subgod" class="field">{% if char.subgod %}{{ char.subgod.naam }}{% endif %}</div>
+					</div>
+				</div>
+				
+				<h2>Experience</h2>
+				<div class="sets experience">
+					<div class="set">
+						<div class="title">Eerste live</div>
+						<div id="eerste-live" class="field">{{ char.eerste_live }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Live #</div>
+						<div id="live-nr" class="field">{{ char.live_nr }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Totaal</div>
+						<div id="xp-totaal" class="field">{{ char.xp_total }}</div>
+					</div>
+				</div>
+				<div class="sets experience">
+					<div class="set">
+						<div class="title">Besteed</div>
+						<div id="xp-besteed" class="field">{{ char.xp_spent }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Restant</div>
+						<div id="xp-restant" class="field">{{ char.xp_remaining }}</div>
+					</div>
+					<div class="set">
+						<div class="title">Leermeester punten</div>
+						<div id="xp-leermeester" class="field"></div>
+					</div>
+				</div>
+				
+				<div class="set size">
+					<h3>Size</h3>
+					<img src="/static/images/size.png" height="100px" />
+					<div id="gnome" class="category"></div>
+					<div id="halfling" class="category"></div>
+					<div id="dwarf" class="category"></div>
+					<div id="human" class="category"></div>
+					<div id="demon" class="category"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="section hitpoints">
+					<h2>Punten per locatie</h2>
+					<img src="/static/images/body.png" height="150px" />
+					<div id="hp-helm" class="field">{{ char.hitpoints }}</div>
+					<div id="hp-torso" class="field">{{ char.hitpoints }}</div>
+					<div id="hp-linkerarm" class="field">{{ char.hitpoints }}</div>
+					<div id="hp-rechterarm" class="field">{{ char.hitpoints }}</div>
+					<div id="hp-linkerbeen" class="field">{{ char.hitpoints }}</div>
+					<div id="hp-rechterbeen" class="field">{{ char.hitpoints }}</div>
+				</div>
+				<div class="section magic">
+					<h2>Mana</h2>
+					<div class="sets">
+						<div class="set">
+							<div class="title">Per dag</div>
+							<div id="mana" class="field">{{ char.mana }}</div>
+						</div>
+						<div class="set">
+							<div class="title">Eerste live met mana</div>
+							<div id="eerste-live-mana" class="field">{{ char.eerste_mana_life }}</div>
+						</div>
+					</div>
+							
+					<h2>Leermeester</h2>
+					<div id="leermeester" class="field"></div>
+					
+					<div class="sets">
+						<div class="title level">Level</div>
+						<div class="set">
+							<div class="title">Magie</div>
+							<div id="lvlmagie" class="field"></div>
+						</div>
+						<div class="set">
+							<div class="title">Religie</div>
+							<div id="lvlreligie" class="field"></div>
+						</div>
+						<div class="set">
+							<div class="title">Ambacht</div>
+							<div id="lvlambacht" class="field"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="area">
+			<div class="column">
+				<div class="section possessions">
+					<table class="possessions">
+						<caption>Bezittingen:</caption>
+						<thead>
+							<tr>
+								<th class="naam">Naam</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if char.items.count %}
+								{% for item in char.items.all %}
+									<tr>
+										<td>{{ item.naam }}</td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				</div>
+				<div class="section logo">
+					<img src="/static/images/ravenskeep.png" height="125px" />
+				</div>
+			</div>
+			<div class="section skills column">
+				<table class="skills">
+					<caption>Vaardigheden:</caption>
+					<thead>
 						<tr>
-							<th>naam</th>
-							<th>xp</th>
-							<th></th>
+							<th class="naam">Naam</th>
+							<th class="xp">xp</th>
 						</tr>
-					{% for skill in char.skills.all %}
-						<tr>
-							<td id="tabel_naam" >{{ skill.naam }}</td> 
-							<td id="tabel_xp" >{{ skill.xp }}</td>
-						</tr>
-					{% endfor %}
-			{% endif %}
-			{% if char.priest_spells.count or char.mage_spells.count %}
-			<th>Spreuken:</th>
-				<tr>
-					<th>naam</th>
-					<th>xp</th>
-					<th>mana</th>
-				</tr>
-			{% endif %}
-			{% if char.priest_spells.count %}
-				{% for spell in char.priest_spells.all %}
-					<tr>
-							<td id="tabel_naam" >{{ spell.naam }}</td>
-							<td id="tabel_xp" >{{ spell.xp }}</td>
-							<td id="tabel_mana" >{{ spell.mana }}<td>
-					</tr>
-				{% endfor %}
-			{% endif %}
-			{% if char.mage_spells.count %}
-				{% for spell in char.mage_spells.all %}
-					<tr>
-						<td id="tabel_naam" >{{ spell.naam }}</td>
-						<td id="tabel_xp" >{{ spell.xp }}</td>
-						<td id="tabel_mana" >{{ spell.mana }}<td>
-					</tr>
-				{% endfor %}
-			{% endif %}
-			{% if char.recipes.count %}
-				<th>Recepten:</th>
-				<tr>
-					<th>naam</th>
-					<th></th>
-					<th>code</th>
-				</tr>
-				{% for recipe in char.recipes.all %}
-					<tr>
-						<td id="tabel_recept" >{{ recipe.name }}</td>
-						<td id="tabel_xp"></td>
-						<td id="tabel_mana" >{{ recipe.code }}</td>
-					</tr>
-				{% endfor %}
-			{% endif %}
-		</table>
+					</thead>
+					<tbody>
+						{% if char.skills.count %}
+								{% for skill in char.skills.all %}
+									<tr>
+										<td id="tabel_naam" >{{ skill.naam }}</td> 
+										<td id="tabel_xp" >{{ skill.xp }}</td>
+									</tr>
+								{% endfor %}
+						{% endif %}
+					</tbody>
+				<table>
+				
+				{% if char.priest_spells.count or char.mage_spells.count %}
+					<table class="spells">
+						<caption>Spreuken:</caption>
+						<thead>
+							<tr>
+								<th class="naam">Naam</th>
+								<th class="xp">xp</th>
+								<th class="mana">mana</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% if char.priest_spells.count %}
+								{% for spell in char.priest_spells.all %}
+									<tr>
+											<td id="tabel_naam" >{{ spell.naam }}</td>
+											<td id="tabel_xp" >{{ spell.xp }}</td>
+											<td id="tabel_mana" >{{ spell.mana }}<td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+							{% if char.mage_spells.count %}
+								{% for spell in char.mage_spells.all %}
+									<tr>
+										<td id="tabel_naam" >{{ spell.naam }}</td>
+										<td id="tabel_xp" >{{ spell.xp }}</td>
+										<td id="tabel_mana" >{{ spell.mana }}<td>
+									</tr>
+								{% endfor %}
+							{% endif %}
+						</tbody>
+					</table>
+				{% endif %}
+				
+				{% if char.recipes.count %}
+					<table class="recipes">
+						<caption>Recepten:</caption>
+						<thead>
+							<tr>
+								<th>naam</th>
+								<th></th>
+								<th>code</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for recipe in char.recipes.all %}
+							<tr>
+								<td id="tabel_recept" >{{ recipe.name }}</td>
+								<td id="tabel_xp"></td>
+								<td id="tabel_mana" >{{ recipe.code }}</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+		</div>
+		<div class="area">
+			<div class="section xfactor">
+				<h2>X-Factor</h2>
+				<div id="xfactor">{{ char.x_factor_skill }} {{ char.ras.skill }}</div>
+			</div>
+		</div>
+		<div class="area">
+			<div class="section remarks">
+				<h2>Opmerkingen</h2>
+				<div id="opmerkingen">{{ char.opmerkingen }}</div>
+			</div>
+		</div>
 	</div>
-	
-	<div>
-		<table id="eigendom_lijst">
-			{% if char.items.count %}
-					<th>Bezittingen:</th>
-				{% for item in char.items.all %}
-					<tr>
-						<td>{{ item.naam }}</td>
-					</tr>
-				{% endfor %}
-			{% endif %}
-		</table>
-	</div>
-     <span class="pagebreak"></span>
   {% endfor %}
 </body>
